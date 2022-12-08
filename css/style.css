@@ -5,21 +5,14 @@ body {
 
 image {
   max-width: 100%;
-}
-
-#main-text {
-  margin: 0px;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  margin-left: 50px;
-  margin-right: 50px;
+  margin-left: 30px;
 }
 
 p {
   font-size: 15pt;
   line-height: 1.4em;
   max-width: 750px;
-  margin: 3% 7%;
+  margin-left: 30px;
 }
 
 a {
@@ -33,10 +26,10 @@ a:active {
   background-color: #000000;
 }
 
-@media screen and (max-width: 500px) {
+/* @media screen and (max-width: 500px) {
   p {
     font-size: 15pt;
     line-height: 1.7em;
     width: 100%;
   }
-}
+} */
