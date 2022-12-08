@@ -27,3 +27,8 @@ body {
   background-color: #fff;
   max-width: 800px;
 }
+
+.cajita {
+  border: 1px solid;
+  box-shadow: 5px 10px greenyellow;
+}
