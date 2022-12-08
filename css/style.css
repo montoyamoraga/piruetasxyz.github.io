@@ -9,14 +9,14 @@ body {
 
 image {
   max-width: 100%;
-  margin-left: 30px;
+  /* margin-left: 30px; */
 }
 
 p {
   font-size: 15pt;
   line-height: 1.5em;
   max-width: 800px;
-  margin-left: 30px;
+  /* margin-left: 30px; */
 }
 
 a {
