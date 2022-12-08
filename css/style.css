@@ -1,6 +1,10 @@
 body {
   background-color: #fff;
-  /* font-family: "Lato", sans-serif; */
+  max-width: 800px;
+}
+
+image {
+  max-width: 100%;
 }
 
 #main-text {
