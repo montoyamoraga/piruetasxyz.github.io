@@ -32,3 +32,43 @@ body {
   border: 1px solid;
   box-shadow: 5px 10px greenyellow;
 }
+
+.proyectos {
+  text-align: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  text-align: left;
+  text-align: center;
+}
+
+.proyectos li {
+  list-style: none;
+  margin: 3px;
+  padding: 0;
+  width: 25%;
+  padding: 20px 20px 20px 20px;
+  margin: 0;
+}
+
+.proyectos a {
+  padding: 4px;
+  padding: 0;
+  display: block;
+  text-decoration: none;
+}
+
+.proyectos .title {
+  font-style: italic;
+}
+
+.proyectos .project-meta {
+  margin-top: 5px;
+}
+
+.proyectos img {
+  width: 100%;
+  display: block;
+}
