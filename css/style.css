@@ -1,5 +1,8 @@
+div {
+  margin: 20px;
+}
+
 body {
-  margin-left: 0px;
   background-color: #fff;
   max-width: 800px;
 }
