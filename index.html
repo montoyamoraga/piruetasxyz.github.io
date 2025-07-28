@@ -1,129 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <!-- character encoding -->
     <meta charset="utf-8" />
     <!-- favicon -->
-    <link rel="icon" type="image/png" href="./assets/favicon.ico" />
+    <link rel="icon" type="image/png" href="/assets/favicon.ico" />
     <!-- title -->
-    <title>piruetas</title>
+    <title>montoyamoraga</title>
     <!-- full width on device -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
     <!-- external css file -->
-    <link rel="stylesheet" type="text/css" href="./css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
   </head>
   <body>
-    <div class="contenedor">
-      <img class="cajita" src="./media/piruetas-v0.jpg" />
-      <p>
-        piruetas es un estudio chileno de arte fundado en 2022 por
-        <a href="https://montoyamoraga.io">montoyamoraga</a>.
-      </p>
+    <div class="flex-container">
+      <div class="left" id="divLeftMenu"></div>
+      <div class="right">
+        <h1 class="cajita" data-i18n="home"></h1>
 
-      <p>piruetas tiene su sede en santiago, chile,  rut 77.608.023-3.</p>
+        <p data-i18n="now"></p>
 
-      <h1 class="cajita">enlaces</h1>
-
-      <ul>
-        <li><a href="./tienda">tienda</a></li>
-        <li><a href="./proyectos">proyectos</a></li>
-        <li><a href="./personas">personas</a></li>
-      </ul>
-      
-
-
-<!--       
-        
-        <p>desde 2023 somos distribuidores oficiales de <a href="https://bastl-instruments.com/">
-        BASTL Instruments</a></p>
-
-      <p>nuestra tienda online está en <a href="https://piruetasxyz.mercadoshops.cl/">
-        piruetasxyz.mercadoshops.cl</a></a></p>
-
-      <h1 class="cajita">proyectos</h1>
-
-      <ul class="proyectos">
-
-        <li>
-          <a href="./proyectos/maqui">
-            <img src="./media/proyectos/maqui.jpg" />
-            <div class="proyecto-meta">
-              <span class="titulo">secuenciador maqui</span>
-              <br />
-              <span>(2024 - )</span>
-            </div>
-          </a>
-        </li>
-
-
-        <li>
-          <a href="./proyectos/investigacion-gerassic-organ">
-            <img src="./media/proyectos/investigacion-gerassic-organ.jpg" />
-            <div class="proyecto-meta">
-              <span class="titulo">investigación gerassic organ</span>
-              <br />
-              <span>(2022 - )</span>
-            </div>
-          </a>
-        </li>
-
-        <li>
-          <a href="./proyectos/investigacion-dibujo-axidraw">
-            <img src="./media/proyectos/investigacion-dibujo-axidraw.jpg" />
-            <div class="proyecto-meta">
-              <span class="titulo">investigación dibujo axidraw</span>
-              <br />
-              <span>(2022 - )</span>
-            </div>
-          </a>
-        </li>
-
-        <li>
-          <a href="./proyectos/maquinitas-tidal">
-            <img src="./media/proyectos/maquinitas-tidal.jpg" />
-            <div class="proyecto-meta">
-              <span class="titulo">maquinitas-tidal</span>
-              <br />
-              <span>(2019 - )</span>
-            </div>
-          </a>
-        </li>
-      </ul>
-
-      <h1 class="cajita">colaboradores</h1>
-
-      <h2>actuales</h2>
-
-      <p>andrés martin (2023 - ): docencia en pregrado, programación, hardware, prototipado</p>
-      <p>janis sepúlveda (2023 - ): docencia en pregrado, programación</p>
-
-      <h2>pasados</h2>
-
-      <p>sofía sandoval (2023): docencia de cursos de extensión</p>
-      <p>valentina montecinos (2023): docencia de cursos de extensión</p>
-      <p>joaquín pérez (2023): docencia de cursos de extensión</p>
-      
-      <p>ignacio passalacqua (2022 - 2023): docencia, electrónica, programación</p>
-
-      <h1 class="cajita">enlaces externos</h1>
-
-      <ul>
-        <li><a href="https://piruetasxyz.mercadoshops.cl/">tienda online</a></li>
-        <li><a href="https://github.com/piruetasxyz">github</a></li>
-        <li><a href="https://instagram.com/piruetas.xyz">instagram</a></li>
-      </ul> -->
-
-      <h1 class="cajita">colofón</h1>
-
-      <p>
-        esta página web está construida de forma manual en HTML, CSS y JS. no
-        usa bibliotecas externas ni sistemas de registro de visita o cookies, ni
-        recolectamos datos sobre ti cuando visitas. está alojada en GitHub Pages
-        y puedes ver su historial en su repositorio
-        <a href="https://github.com/piruetasxyz/piruetasxyz.github.io"
-          >https://github.com/piruetasxyz/piruetasxyz.github.io</a
-        >
-      </p>
+        <h1 class="cajita">colophon</h1>
+        <p data-i18n="colophon"></p>
+      </div>
     </div>
+    <script src="/nav.js"></script>
+    <script src="/script.js"></script>
   </body>
 </html>
