@@ -1,5 +1,5 @@
 {
-  "now": "piruetas is a chilean art studio, founded in 2022. ",
+  "now": "piruetas is a chilean art studio, founded in 2022.",
   "colophon": "this website was manually written using HTML, CSS, and JS. it doesn't rely on external libraries, nor use any tracking system or cookies, nor collect data about you when you visit. it is hosted on GitHub Pages.",
   "archive": "archive",
   "home": "home",
@@ -8,7 +8,7 @@
   "projects": "projects",
   "myself-professional-name": "aarón montoya-moraga",
   "people": "people",
-"people-intro": "the following people have worked in several projects for piruetas over the years.",
+  "people-intro": "the following people have worked in several projects for piruetas over the years.",
   "people-janis-sepulveda": "janis sepúlveda",
   "people-janis-sepulveda-role": "teaching, programming",
   "people-janis-sepulveda-years": "2023 - 2025",
@@ -33,6 +33,8 @@
   "people-ignacio-passalacqua": "ignacio passalacqua",
   "people-ignacio-passalacqua-role": "teaching, electronics, programming",
   "people-ignacio-passalacqua-years": "2022 - 2023",
+  "projects-maquinitas-tidal": "maquinitas-tidal",
+  "projects-gerassic-organ": "gerassic organ",
   "store": "store",
   "store-intro": "soon...",
   "store-import-bastl": "since 2023 we are official dealers of BASTL Instruments in Chile."
