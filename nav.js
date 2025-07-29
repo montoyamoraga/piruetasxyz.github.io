@@ -6,7 +6,8 @@ let navbar = `
     </h3>
     <h3><a href="/">home</a></h3>
     <h3><a href="/info">info</a></h3>
-    <h3><a href="/info" data-i18n="projects"></a></h3>
+    <h3><a href="/projects" data-i18n="projects"></a></h3>
+    <h3><a href="/people" data-i18n="people"></a></h3>
     </nav>
 `;
 
