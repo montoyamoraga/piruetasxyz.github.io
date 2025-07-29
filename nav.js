@@ -14,6 +14,7 @@ let navbar = `
         <li>
             <a href="/projects/maquinitas-tidal" data-i18n="projects-maquinitas-tidal">
             </a>
+            <span data-i18n="projects-maquinitas-tidal-years"></span>
         </li>
     </ol>
     <h3>hardware</h3>
@@ -21,6 +22,7 @@ let navbar = `
         <li>
             <a href="/projects/gerassic-organ" data-i18n="projects-gerassic-organ">
             </a>
+            <span data-i18n="projects-gerassic-organ-years"></span>
         </li>
     </ol>
     <h3>teaching</h3>
