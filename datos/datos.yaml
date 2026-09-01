@@ -82,7 +82,7 @@ personas:
             es: |-
               Janis Sepúlveda Vera es diseñadora industrial de la
               Universidad Diego Portales (2025). Actualmente
-              estudiante de Magister en Diseño Avanzado de la
+              estudiante del Magíster en Diseño Avanzado de la
               Pontificia Universidad Católica de Chile.
             en: |-
               Janis Sepúlveda Vera is an industrial designer from
@@ -108,7 +108,7 @@ personas:
         es: 'colaboradores'
         en: 'collaborators'
       miembros:
-        - nombre: 'Mateo Arce'
+        - nombre: 'Mateo Arce Moore'
           pronombres:
             es: '(él)'
             en: '(he)'
@@ -117,8 +117,15 @@ personas:
             es: 'docencia, programación, prototipado (2025)'
             en: 'teaching, programming, prototyping (2025)'
           descripcion:
-            es: 'Breve descripción del trabajo realizado en Piruetas.'
-            en: 'Brief description of the work carried out at Piruetas.'
+             es: |-
+              Mateo Arce Moore es diseñador gráfico de la
+              Universidad Diego Portales (2025). Actualmente
+              estudiante del Magíster en Artes Mediales de la
+              Universidad de Chile.
+            en: |-
+              Mateo Arce Moore is a graphic designer from
+              Universidad Diego Portales (2025) and is currently a
+              Master's student in Media Arts at the Universidad de Chile.
           enlaces:
             - etiqueta:
                 es: 'github'
