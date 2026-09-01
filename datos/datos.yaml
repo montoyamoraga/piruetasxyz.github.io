@@ -146,8 +146,8 @@ personas:
             es: 'prototipado, fabricación (2025)'
             en: 'prototyping, fabrication (2025)'
           descripcion:
-            es: 'Breve descripción del trabajo realizado en Piruetas.'
-            en: 'Brief description of the work carried out at Piruetas.'
+            es: false
+            en: false
           enlaces:
             - etiqueta:
                 es: 'github'
@@ -167,8 +167,8 @@ personas:
             es: 'docencia, programación, prototipado (2023-2025)'
             en: 'teaching, programming, prototyping (2023-2025)'
           descripcion:
-            es: 'Breve descripción del trabajo realizado en Piruetas.'
-            en: 'Brief description of the work carried out at Piruetas.'
+            es: false
+            en: false
           enlaces:
             - etiqueta:
                 es: 'sitio'
@@ -191,8 +191,8 @@ personas:
             es: 'prototipado, soldadura (2025)'
             en: 'prototyping, soldering (2025)'
           descripcion:
-            es: 'Breve descripción del trabajo realizado en Piruetas.'
-            en: 'Brief description of the work carried out at Piruetas.'
+            es: false
+            en: false
           enlaces:
             - etiqueta:
                 es: 'github'
@@ -201,14 +201,14 @@ personas:
 
         - nombre: 'Valentina Montecinos'
           pronombres:
-            es: '(pronombre)'
-            en: '(pronoun)'
+            es: '(ella)'
+            en: '(she)'
           rol:
             es: 'docencia (2023)'
             en: 'teaching (2023)'
           descripcion:
-            es: 'Breve descripción del trabajo realizado en Piruetas.'
-            en: 'Brief description of the work carried out at Piruetas.'
+            es: false
+            en: false
           enlaces:
             - etiqueta:
                 es: 'github'
@@ -223,8 +223,8 @@ personas:
             es: 'docencia (2023)'
             en: 'teaching (2023)'
           descripcion:
-            es: 'Breve descripción del trabajo realizado en Piruetas.'
-            en: 'Brief description of the work carried out at Piruetas.'
+            es: false
+            en: false
           enlaces:
             - etiqueta:
                 es: 'github'
@@ -236,11 +236,11 @@ personas:
             es: '(ella)'
             en: '(she)'
           rol:
-            es: 'docencia, investigación (2023)'
-            en: 'teaching, research (2023)'
+            es: false
+            en: false
           descripcion:
-            es: 'Breve descripción del trabajo realizado en Piruetas.'
-            en: 'Brief description of the work carried out at Piruetas.'
+            es: false
+            en: false
           enlaces:
             - etiqueta:
                 es: 'github'
@@ -249,14 +249,14 @@ personas:
 
         - nombre: 'Ignacio Passalacqua'
           pronombres:
-            es: '(pronombre)'
-            en: '(pronoun)'
+            es: '(él)'
+            en: '(he)'
           rol:
             es: 'docencia, electrónica, programación (2022-2023)'
             en: 'teaching, electronics, programming (2022-2023)'
           descripcion:
-            es: 'Breve descripción del trabajo realizado en Piruetas.'
-            en: 'Brief description of the work carried out at Piruetas.'
+            es: false
+            en: false
           enlaces:
             - etiqueta:
                 es: 'github'

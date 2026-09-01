@@ -202,11 +202,17 @@ body.menu-ready .right {
   color: black;
 }
 
+.personas-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
 .persona-card {
   display: flex;
+  grid-column: 1 / -1;
   background-color: white;
   border: 1px solid black;
-  margin-bottom: 30px;
   box-shadow: 10px 10px 0px pink;
   overflow: hidden;
   gap: 0;
@@ -279,6 +285,26 @@ body.menu-ready .right {
   gap: 10px;
   margin-top: auto;
   flex-wrap: wrap;
+}
+
+.persona-card-compacta {
+  grid-column: auto;
+}
+
+.persona-card-compacta .persona-foto {
+  flex: 0 0 120px;
+}
+
+.persona-card-compacta .persona-info {
+  padding: 15px;
+}
+
+.persona-card-compacta .nombre-destacado {
+  font-size: 14pt;
+}
+
+.persona-card-compacta .rol {
+  margin-bottom: 8px;
 }
 
 .carousel-container {
@@ -384,6 +410,10 @@ html[lang="es"] .en {
   .contenedor-producto {
     flex-direction: column;
     gap: 20px;
+  }
+
+  .personas-list {
+    grid-template-columns: 1fr;
   }
 
   .contenedor-producto .proyecto-item {

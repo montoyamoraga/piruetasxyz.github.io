@@ -25,6 +25,11 @@
   function createPersonaCard(p) {
     const card = document.createElement('div');
     card.className = 'persona-card';
+    const tieneDescripcion =
+      p.descripcion && (p.descripcion.es || p.descripcion.en);
+    if (!tieneDescripcion) {
+      card.classList.add('persona-card-compacta');
+    }
 
     if (p.modelo3d) {
       const foto = document.createElement('div');
