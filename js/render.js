@@ -26,7 +26,15 @@
     const card = document.createElement('div');
     card.className = 'persona-card';
 
-    if (p.foto) {
+    if (p.modelo3d) {
+      const foto = document.createElement('div');
+      foto.className = 'persona-foto';
+      const visor = document.createElement('div');
+      visor.className = 'visor-3d';
+      visor.dataset.modelo3d = p.modelo3d;
+      foto.appendChild(visor);
+      card.appendChild(foto);
+    } else if (p.foto) {
       const foto = document.createElement('div');
       foto.className = 'persona-foto';
       const img = document.createElement('img');

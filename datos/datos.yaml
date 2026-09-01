@@ -31,6 +31,7 @@ personas:
             es: 'Investigador principal'
             en: 'Principal Investigator'
           foto: '../media/proyectos/aaron-montoya.jpeg'
+          modelo3d: '../assets/3d/montoyamoraga-2026-08.glb'
           descripcion:
             es: |-
               Aarón Montoya Moraga es ingeniere civil electricista de
