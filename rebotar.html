@@ -1,0 +1,277 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="/assets/favicon.ico" />
+    <title>piruetas · rebotar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        overflow: hidden;
+      }
+      canvas {
+        display: block;
+      }
+    </style>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "/lib/three/three.module.min.js"
+        }
+      }
+    </script>
+  </head>
+
+  <body>
+    <script type="module">
+      import * as THREE from 'three';
+      import { GLTFLoader } from '/lib/three/jsm/loaders/GLTFLoader.js';
+      import { DRACOLoader } from '/lib/three/jsm/loaders/DRACOLoader.js';
+
+      // the two 3d objects featured on the personas page
+      const modelos = [
+        '/assets/3d/montoyamoraga-2026-08.glb',
+        '/assets/3d/mateo-arce-2026-09.glb',
+      ];
+
+      const dracoLoader = new DRACOLoader();
+      dracoLoader.setDecoderPath('/lib/three/jsm/libs/draco/');
+      const loader = new GLTFLoader();
+      loader.setDRACOLoader(dracoLoader);
+
+      const scene = new THREE.Scene();
+
+      // orthographic camera keeps object size constant regardless of depth,
+      // which makes the dvd-style bounce math a simple 2d wall reflection
+      const viewHeight = 12;
+      let aspect = window.innerWidth / window.innerHeight;
+      const camera = new THREE.OrthographicCamera(
+        (-viewHeight * aspect) / 2,
+        (viewHeight * aspect) / 2,
+        viewHeight / 2,
+        -viewHeight / 2,
+        0.1,
+        100
+      );
+      camera.position.set(0, 0, 20);
+      camera.lookAt(0, 0, 0);
+
+      const renderer = new THREE.WebGLRenderer({ antialias: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setClearColor(0xffffff, 1);
+      renderer.autoClear = false;
+      document.body.appendChild(renderer.domElement);
+
+      scene.add(new THREE.AmbientLight(0xffffff, 1.1));
+      const sunLight = new THREE.DirectionalLight(0xffffff, 1.2);
+      sunLight.position.set(2, 3, 4);
+      scene.add(sunLight);
+
+      // a fading white plane drawn every frame instead of a hard clear:
+      // it leaves each bounce a soft comet trail before dissolving to white
+      const trailScene = new THREE.Scene();
+      const trailCamera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+      const trailPlane = new THREE.Mesh(
+        new THREE.PlaneGeometry(2, 2),
+        new THREE.MeshBasicMaterial({
+          color: 0xffffff,
+          transparent: true,
+          opacity: 0.16,
+          depthTest: false,
+          depthWrite: false,
+        })
+      );
+      trailScene.add(trailPlane);
+
+      function halfBounds() {
+        const halfHeight = viewHeight / 2;
+        const halfWidth = (viewHeight * aspect) / 2;
+        return { halfWidth, halfHeight };
+      }
+
+      const palette = [0xff3b6b, 0x2f7dff, 0x22c48a, 0xffa733, 0xb066ff];
+      function randomHue() {
+        return palette[Math.floor(Math.random() * palette.length)];
+      }
+
+      function randomVelocity(speed) {
+        // avoid perfectly diagonal/repeating paths by biasing the angle randomly
+        const angle = Math.random() * Math.PI * 2;
+        return {
+          x: Math.cos(angle) * speed,
+          y: Math.sin(angle) * speed,
+        };
+      }
+
+      const bouncers = [];
+
+      modelos.forEach((url, index) => {
+        loader.load(
+          url,
+          (gltf) => {
+            const model = gltf.scene;
+
+            const box = new THREE.Box3().setFromObject(model);
+            const sphere = new THREE.Sphere();
+            box.getBoundingSphere(sphere);
+
+            const targetRadius = 2.1;
+            const scale = targetRadius / sphere.radius;
+            model.scale.setScalar(scale);
+
+            const center = sphere.center.clone().multiplyScalar(scale);
+            model.position.sub(center);
+
+            const wrapper = new THREE.Group();
+            wrapper.add(model);
+
+            const { halfWidth, halfHeight } = halfBounds();
+            const startX = (Math.random() * 2 - 1) * (halfWidth - targetRadius) * 0.6;
+            const startY = (Math.random() * 2 - 1) * (halfHeight - targetRadius) * 0.6;
+            wrapper.position.set(startX, startY, 0);
+            scene.add(wrapper);
+
+            const accent = new THREE.PointLight(randomHue(), 2, 12);
+            accent.position.set(0, 0, 3);
+            wrapper.add(accent);
+
+            const velocity = randomVelocity(3 + index * 0.4);
+
+            bouncers.push({
+              wrapper,
+              accent,
+              radius: targetRadius,
+              // the bounding sphere is padded well past the actual bust
+              // shape, so use a tighter radius just for bust-to-bust
+              // collisions or they'd visibly stop short of touching
+              collisionRadius: targetRadius * 0.35,
+              velocity,
+              spin: {
+                x: (Math.random() * 0.6 + 0.3) * (Math.random() < 0.5 ? -1 : 1),
+                y: (Math.random() * 0.6 + 0.3) * (Math.random() < 0.5 ? -1 : 1),
+                z: (Math.random() * 0.4 + 0.15) * (Math.random() < 0.5 ? -1 : 1),
+              },
+            });
+          },
+          undefined,
+          (error) => console.error('no se pudo cargar el modelo 3D:', url, error)
+        );
+      });
+
+      function bounce(b) {
+        b.accent.color.setHex(randomHue());
+      }
+
+      const collisionNormal = new THREE.Vector2();
+
+      // circle-circle collision between every pair of bouncers: separate
+      // them so they don't overlap, then reflect their velocities along
+      // the collision normal (equal-mass elastic exchange)
+      function resolveCollisions() {
+        for (let i = 0; i < bouncers.length; i++) {
+          for (let j = i + 1; j < bouncers.length; j++) {
+            const a = bouncers[i];
+            const b = bouncers[j];
+
+            const dx = b.wrapper.position.x - a.wrapper.position.x;
+            const dy = b.wrapper.position.y - a.wrapper.position.y;
+            const distance = Math.hypot(dx, dy) || 0.0001;
+            const minDistance = a.collisionRadius + b.collisionRadius;
+            if (distance >= minDistance) continue;
+
+            collisionNormal.set(dx / distance, dy / distance);
+
+            const overlap = minDistance - distance;
+            a.wrapper.position.x -= collisionNormal.x * overlap * 0.5;
+            a.wrapper.position.y -= collisionNormal.y * overlap * 0.5;
+            b.wrapper.position.x += collisionNormal.x * overlap * 0.5;
+            b.wrapper.position.y += collisionNormal.y * overlap * 0.5;
+
+            const aNormalSpeed =
+              a.velocity.x * collisionNormal.x + a.velocity.y * collisionNormal.y;
+            const bNormalSpeed =
+              b.velocity.x * collisionNormal.x + b.velocity.y * collisionNormal.y;
+
+            // only exchange velocity if they're still closing in, so a pair
+            // resting in contact doesn't keep flashing every frame
+            if (bNormalSpeed - aNormalSpeed >= 0) continue;
+
+            const speedDelta = bNormalSpeed - aNormalSpeed;
+            a.velocity.x += collisionNormal.x * speedDelta;
+            a.velocity.y += collisionNormal.y * speedDelta;
+            b.velocity.x -= collisionNormal.x * speedDelta;
+            b.velocity.y -= collisionNormal.y * speedDelta;
+
+            bounce(a);
+            bounce(b);
+          }
+        }
+      }
+
+      function onResize() {
+        aspect = window.innerWidth / window.innerHeight;
+        camera.left = (-viewHeight * aspect) / 2;
+        camera.right = (viewHeight * aspect) / 2;
+        camera.top = viewHeight / 2;
+        camera.bottom = -viewHeight / 2;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      }
+      window.addEventListener('resize', onResize);
+
+      let lastTime = performance.now();
+
+      function animate(now) {
+        requestAnimationFrame(animate);
+        const delta = Math.min((now - lastTime) / 1000, 0.05);
+        lastTime = now;
+
+        const { halfWidth, halfHeight } = halfBounds();
+
+        bouncers.forEach((b) => {
+          const pos = b.wrapper.position;
+          pos.x += b.velocity.x * delta;
+          pos.y += b.velocity.y * delta;
+
+          if (pos.x - b.radius < -halfWidth) {
+            pos.x = -halfWidth + b.radius;
+            b.velocity.x *= -1;
+            bounce(b);
+          } else if (pos.x + b.radius > halfWidth) {
+            pos.x = halfWidth - b.radius;
+            b.velocity.x *= -1;
+            bounce(b);
+          }
+
+          if (pos.y - b.radius < -halfHeight) {
+            pos.y = -halfHeight + b.radius;
+            b.velocity.y *= -1;
+            bounce(b);
+          } else if (pos.y + b.radius > halfHeight) {
+            pos.y = halfHeight - b.radius;
+            b.velocity.y *= -1;
+            bounce(b);
+          }
+
+          b.wrapper.rotation.x += b.spin.x * delta;
+          b.wrapper.rotation.y += b.spin.y * delta;
+          b.wrapper.rotation.z += b.spin.z * delta;
+        });
+
+        resolveCollisions();
+
+        renderer.clearDepth();
+        renderer.render(trailScene, trailCamera);
+        renderer.render(scene, camera);
+      }
+      requestAnimationFrame(animate);
+    </script>
+  </body>
+</html>
