@@ -112,6 +112,7 @@ personas:
           pronombres:
             es: '(él)'
             en: '(he)'
+          modelo3d: '../assets/3d/mateo-arce-2026-09.glb'
           rol:
             es: 'docencia, programación, prototipado (2025)'
             en: 'teaching, programming, prototyping (2025)'
